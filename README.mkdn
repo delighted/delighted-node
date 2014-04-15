@@ -1,19 +1,147 @@
+# NodeJS module for the Delighted API
+
+> Delighted is the easiest and most beautiful way to measure customer happiness. Are your customers delighted?
+
+Site: [https://delightedapp.com](https://delightedapp.com/)
+
+API Docs: [https://delightedapp.com/docs/api](https://delightedapp.com/docs/api)
 
 
-https://delightedapp.com/docs/api
- 
+## Using this module
 
-Schedule a survey
-POST /v1/people.json
+To use this module, you will need a Delighted account with an API key. 
 
-Delete a pending survey
-DELETE /v1/people/{PERSON_EMAIL}/survey_requests/pending.json
+### Install the module
 
-Add a survey response
-POST /v1/survey_responses.json
+```
+npm install delighted
+```
 
-Get all responses
-GET /v1/survey_responses.json
+### Instantiate the delighted module
 
-Get metrics for your account
-GET /v1/metrics.json
+```
+var Delighted = require('delighted');
+
+var delighted = new Delighted('DELIGHTED_API_KEY');
+```
+
+
+### Creating a person to send an email to
+```
+
+Create or update a person and schedule a survey email.
+
+Valid options:
+
+@string email  				- Email of the person (required)
+@string name  				- Name of the person
+@integer delay 				- The time in seconds to wait before sending the survey email. Default is 0 which will send immediately
+@properties object 			- Custom properties to associate with the sent survey
+@boolean send 				- Set to false if you do not want to send a survey email. The default is true.
+
+var options = {
+	email: 'someEmail@somedomain.com'
+};
+
+delighted.person.create(options)
+.then(function(response){
+
+})
+.fail(function(error){
+
+});
+
+```
+
+### Delete a pending survey request
+```
+Remove all pending (i.e. scheduled in the future, but not yet sent) survey requests for a given person
+
+Valid options:
+
+@string email 				- Email of the person you want to delete scheduled surveys for. (required)
+
+delighted.surveyRequest.deletePending(email)
+.then(function(response){
+
+})
+.fail(function(error){
+
+});
+
+```
+
+### Create a survey response
+```
+Create a survey response (i.e. a score and comment from a person).
+
+Valid options:
+
+@string person 				- The ID of the person responding. (required)
+@object person_properties 	- Custom properties to associate with this response.
+@integer score 				- Score of the response, from 0 to 10. (required)
+@string comment 			- An optional comment that the person left when responding.
+
+
+delighted.surveyResponse.create({
+    person: '1234',
+    score: 7
+})
+.then(function(response){
+
+})
+.fail(function(error){
+
+});
+
+```
+
+### List survey responses
+```
+Retrieve all survey responses for your account.
+
+Results are returned in creation order, with the oldest item first, and are paginated. See the parameters section below for more information regarding the pagination parameters.
+
+Valid options:
+
+@integer per_page 			- Number of results to return per page. The default is 20. The maximum is 100.
+@integer page 				- The page number to return. The default is 1.
+@integer since 				- An optional Unix timestamp to restrict responses to those created on or after this time. Formatting example (for 1 hour ago): "1397592449".
+@integer until 				- An optional Unix timestamp to restrict responses to those created on or before this time. Formatting example (for the current time): 1397596049.
+@string trend 				- An optional ID of a trend to restrict responses to that trend. To obtain the ID for a trend, visit the trends page. For example, if the URL for the desired trend ends with /trends/1234 the ID of that trend is 1234.
+@string order   			- An optional sort order for the responses. The default is asc, which will return responses in chronological order (oldest first). To get responses in reverse chronological order (newest first), specify desc.
+@array expand 				- By default, only the person id is included in the response. If you want the full person object included, pass expand[]=person.
+
+delighted.surveyResponses.all({
+	per_page: 10,
+	page: 1
+})
+.then(function(response){
+
+})
+.fail(function(error){
+
+});
+
+```
+
+### Get metrics
+```
+Retrieve metrics for your account (includes your NPS® score and response breakdown).
+
+Valid options:
+
+@integer since 				- An optional Unix timestamp to restrict metrics to those created on or after this time. Formatting example (for 1 hour ago): 1397592449.
+@integer until 				- An optional Unix timestamp to restrict metrics to those created on or before this time. Formatting example (for the current time): 1397596049.
+@string trend 				- An optional ID of a trend to restrict metrics to that trend. To obtain the ID for a trend, visit the trends page. For example, if the URL for the desired trend ends with /trends/1234 the ID of that trend is 1234.
+
+delighted.metrics.retrieve({
+	since: 1397592449
+})
+.then(function(response){
+
+})
+.fail(function(error){
+
+});
+```
