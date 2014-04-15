@@ -1,0 +1,20 @@
+{
+  "name": "delighted",
+  "version": "0.0.1",
+  "description": "NodeJS module for interacting with the Delighted API",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "github.com/seanmcgary/delighted.git"
+  },
+  "keywords": [
+    "delighted",
+    "nodejs",
+    "api"
+  ],
+  "author": "Sean McGary",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seanmcgary/delighted/issues"
+  }
+}

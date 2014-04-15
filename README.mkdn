@@ -1,0 +1,19 @@
+
+
+https://delightedapp.com/docs/api
+ 
+
+Schedule a survey
+POST /v1/people.json
+
+Delete a pending survey
+DELETE /v1/people/{PERSON_EMAIL}/survey_requests/pending.json
+
+Add a survey response
+POST /v1/survey_responses.json
+
+Get all responses
+GET /v1/survey_responses.json
+
+Get metrics for your account
+GET /v1/metrics.json
