@@ -12,7 +12,7 @@
     "nodejs",
     "api"
   ],
-  "author": "Sean McGary",
+  "author": "Sean McGary <sean@seanmcgary.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/seanmcgary/delighted/issues"
