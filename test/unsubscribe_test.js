@@ -6,7 +6,7 @@ describe('Unsubscribe', function() {
     it('creates an unsubscribe', function(done) {
       var callback = function(unsubscribe) {
         expect(unsubscribe.person_email).to.eq('foo+test@example.com');
-        done();
+        return done();
       }
 
       Unsubscribe.create({ person_email: 'foo+test@example.com' }, callback);

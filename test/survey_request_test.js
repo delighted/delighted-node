@@ -6,7 +6,7 @@ describe('SurveyRequest', function() {
     it('deletes a pending survey request', function(done) {
       var callback = function(request) {
         expect(request.person_email).to.eq('foo+test@example.com');
-        done();
+        return done();
       }
 
       SurveyRequest.deletePending({

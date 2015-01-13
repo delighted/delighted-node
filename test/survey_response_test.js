@@ -7,7 +7,7 @@ describe('SurveyResponse', function() {
       var callback = function(response) {
         expect(response.person).to.eq(321);
         expect(response.score).to.eq(10);
-        done();
+        return done();
       }
 
       SurveyResponse.create({ person: 321, score: 10 }, callback);
@@ -18,13 +18,12 @@ describe('SurveyResponse', function() {
     it('retrieves a specific response', function(done) {
       var callback = function(response) {
         expect(response.person).to.eq(321);
-        done();
+        return done();
       }
 
       SurveyResponse.retrieve(321, callback);
     });
   });
-
 
   // describe('#all')
   // describe('#save')

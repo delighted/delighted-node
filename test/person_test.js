@@ -21,7 +21,7 @@ describe('Person', function() {
         expect(person.delay).to.eq(60);
         expect(person.properties).to.exist;
 
-        done();
+        return done();
       }
 
       Person.create(params, callback);
