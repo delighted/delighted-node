@@ -16,15 +16,13 @@ describe('Person', function() {
         }
       }
 
-      var callback = function(person) {
+      Person.create(params).then(function(person) {
         expect(person.email).to.eq('foo+testing@example.com');
         expect(person.delay).to.eq(60);
         expect(person.properties).to.exist;
 
         return done();
-      }
-
-      Person.create(params, callback);
+      });
     });
   });
 });
