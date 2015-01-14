@@ -1,27 +1,29 @@
 var expect = require('chai').expect;
 var Person = require('../lib/Person');
+var helper = require('./test_helper');
 
 describe('Person', function() {
+  var server;
+
+  beforeEach(function() {
+    server = helper.server(helper.port);
+  });
+
+  afterEach(function() {
+    server.close();
+  });
+
   describe('#create', function() {
-    it('creates a new person and saves it to the server', function(done) {
+    it('creates a new person and saves it to the server', function() {
+      var person = new Person(helper.config);
       var params = {
-        email: 'foo+testing@example.com',
+        email: 'foo@example.com',
         name: 'Happy Person',
-        delay: 60,
-        properties: {
-          customer_id: 123,
-          country: 'USA',
-          local: 'en',
-          question_product_name: 'Classic Oxford'
-        }
+        delay: 60
       }
 
-      Person.create(params).then(function(person) {
-        expect(person.email).to.eq('foo+testing@example.com');
-        expect(person.delay).to.eq(60);
-        expect(person.properties).to.exist;
-
-        return done();
+      return person.create(params).then(function(person) {
+        expect(person.email).to.eq('foo@example.com');
       });
     });
   });

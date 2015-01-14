@@ -1,14 +1,25 @@
 var expect      = require('chai').expect;
 var Unsubscribe = require('../lib/unsubscribe');
+var helper      = require('./test_helper');
 
 describe('Unsubscribe', function() {
-  describe('.create', function() {
-    it('creates an unsubscribe', function(done) {
-      var params = { person_email: 'foo+test@example.com' };
+  var server;
 
-      Unsubscribe.create(params).then(function(unsubscribe) {
-        expect(unsubscribe.person_email).to.eq('foo+test@example.com');
-        return done();
+  beforeEach(function() {
+    server = helper.server(helper.port);
+  });
+
+  afterEach(function() {
+    server.close();
+  });
+
+  describe('#create', function() {
+    it('creates an unsubscribe', function() {
+      var unsubscribe = new Unsubscribe(helper.config);
+      var params = { person_email: 'foo@example.com' };
+
+      return unsubscribe.create(params).then(function(response) {
+        expect(response.person_email).to.eq('foo@example.com');
       });;
     });
   });

@@ -26,6 +26,11 @@ var mapping = {
     body: { nps: 0 }
   },
 
+  '/people.json': {
+    status: 201,
+    body: { email: 'foo@example.com' }
+  },
+
   '/people/foo%40example.com/survey_requests/pending.json': {
     status: 200,
     body: { ok: true }
@@ -44,6 +49,11 @@ var mapping = {
   '/survey_responses.json?order=desc': {
     status: 200,
     body: [{ id: 1 }, { id: 2 }]
+  },
+
+  '/unsubscribes.json': {
+    status: 201,
+    body: { person_email: 'foo@example.com' }
   }
 };
 
