@@ -4,7 +4,7 @@
   "description": "Delighted API client for Node",
   "main": "delighted.js",
   "scripts": {
-    "lint": "jshint delighted.js lib",
+    "lint": "jshint lib",
     "test": "mocha"
   },
   "repository": {
