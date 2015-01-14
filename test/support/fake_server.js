@@ -29,6 +29,21 @@ var mapping = {
   '/people/foo%40example.com/survey_requests/pending.json': {
     status: 200,
     body: { ok: true }
+  },
+
+  '/survey_responses.json': {
+    status: 201,
+    body: { person: '321' }
+  },
+
+  '/survey_responses.json/321': {
+    status: 200,
+    body: { person: '321' }
+  },
+
+  '/survey_responses.json?order=desc': {
+    status: 200,
+    body: [{ id: 1 }, { id: 2 }]
   }
 };
 
