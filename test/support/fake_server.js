@@ -6,6 +6,11 @@ var mapping = {
     body: { message: 'OK' }
   },
 
+  '/201': {
+    status: 201,
+    body: { ok: true }
+  },
+
   '/401':  {
     status: 401,
     body: null

@@ -42,4 +42,16 @@ describe('Client', function() {
       });
     });
   });
+
+  describe('#post', function() {
+    it('sends a json encoded payload', function(done) {
+      var client = new Client(helper.config);
+
+      client.post('/201', { ok: true }).then(function(response) {
+        expect(response.status).to.eq(201);
+        expect(response.body).to.eql({ ok: true });
+        return done();
+      });
+    });
+  });
 });
