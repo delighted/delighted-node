@@ -1,13 +1,20 @@
 var http = require('http');
 
-var handler = function(request, response) {
-  response.writeHead(200)
+var responses = {
+  '/fake': { message: 'OK' }
+};
 
-  return response.end()
+var handler = function(request, response) {
+  var body = JSON.stringify(responses[request.url]);
+
+  response.writeHead(200)
+  response.end(body);
+
+  return response;
 };
 
 module.exports = function(port) {
-  var server = https.createServer(handler);
+  var server = http.createServer(handler);
 
   server.listen(port);
 
