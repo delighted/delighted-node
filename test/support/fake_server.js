@@ -1,13 +1,15 @@
 var http = require('http');
 
-var responses = {
-  '/fake': { message: 'OK' }
+var mapping = {
+  '/fake': { status: 200, body: { message: 'OK' } },
+  '/401':  { status: 401, body: null }
 };
 
 var handler = function(request, response) {
-  var body = JSON.stringify(responses[request.url]);
+  var mapped = mapping[request.url];
+  var body = JSON.stringify(mapped.body);
 
-  response.writeHead(200)
+  response.writeHead(mapped.status);
   response.end(body);
 
   return response;

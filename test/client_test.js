@@ -33,5 +33,15 @@ describe('Client', function() {
         return done();
       });
     });
+
+    it('rejects with custom errors', function(done) {
+      var client = new Client({ host: host, port: port });
+
+      client.get('/401').then(function(_) {
+      }, function(error) {
+        expect(error.message).to.match(/invalid api key/i);
+        return done();
+      });
+    });
   });
 });
