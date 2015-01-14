@@ -2,7 +2,8 @@ var http = require('http');
 
 var mapping = {
   '/fake': { status: 200, body: { message: 'OK' } },
-  '/401':  { status: 401, body: null }
+  '/401':  { status: 401, body: null },
+  '/metrics.json': { status: 200, body: { nps: 0 } }
 };
 
 var handler = function(request, response) {

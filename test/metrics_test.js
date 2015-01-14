@@ -1,23 +1,29 @@
-var expect  = require('chai').expect;
-var Metrics = require('../lib/Metrics');
+var expect     = require('chai').expect;
+var Metrics    = require('../lib/Metrics');
+var fakeServer = require('./support/fake_server');
 
 describe('Metrics', function() {
-  describe('.retrieve', function() {
-    it('pulls down the current metrics', function(done) {
-      Metrics.retrieve().then(function(metrics) {
-        expect(metrics.nps).to.exist;
-        return done();
-      });
-    });
+  var host = 'localhost';
+  var port = 7654;
+  var server;
+
+  beforeEach(function() {
+    server = fakeServer(port);
   });
 
-  describe('properties', function() {
-    it('pre-defines response properties', function() {
-      var metrics = new Metrics();
+  afterEach(function() {
+    server.close();
+  });
 
-      expect(metrics).to.have.property('nps');
-      expect(metrics).to.have.property('passive_count');
-      expect(metrics).to.have.property('response_count');
+  describe('.retrieve', function() {
+    it('pulls down the current metrics', function(done) {
+      var config  = { host: host, port: port };
+      var metrics = new Metrics(config);
+
+      metrics.retrieve().then(function(metrics) {
+        expect(metrics.nps).to.eq(0);
+        return done();
+      });
     });
   });
 });
