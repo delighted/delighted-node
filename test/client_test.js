@@ -22,35 +22,40 @@ describe('Client', function() {
       expect(promise).to.be.instanceof(Thenable);
     });
 
-    it('resolves to a response object', function(done) {
+    it('resolves to a response object', function() {
       var client = new Client(helper.config);
 
-      client.get('/fake').then(function(response) {
+      return client.get('/fake').then(function(response) {
         expect(response.status).to.eq(200);
         expect(response.body).to.eql({ message: 'OK' });
-        return done();
       });
     });
 
-    it('rejects with custom errors', function(done) {
+    it('appends query parameters', function() {
       var client = new Client(helper.config);
 
-      client.get('/401').then(function(_) {
+      return client.get('/fake', { per_page: 20, page: 10 }).then(function(response) {
+        expect(response.body).to.eql({ message: 'ALRIGHT' });
+      });
+    });
+
+    it('rejects with custom errors', function() {
+      var client = new Client(helper.config);
+
+      return client.get('/401').then(function(_) {
       }, function(error) {
         expect(error.message).to.match(/invalid api key/i);
-        return done();
       });
     });
   });
 
   describe('#post', function() {
-    it('sends a json encoded payload', function(done) {
+    it('sends a json encoded payload', function() {
       var client = new Client(helper.config);
 
-      client.post('/201', { ok: true }).then(function(response) {
+      return client.post('/201', { ok: true }).then(function(response) {
         expect(response.status).to.eq(201);
         expect(response.body).to.eql({ ok: true });
-        return done();
       });
     });
   });

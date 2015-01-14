@@ -6,6 +6,11 @@ var mapping = {
     body: { message: 'OK' }
   },
 
+  '/fake?per_page=20&page=10': {
+    status: 200,
+    body: { message: 'ALRIGHT' }
+  },
+
   '/201': {
     status: 201,
     body: { ok: true }
