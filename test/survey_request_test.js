@@ -1,13 +1,25 @@
 var expect        = require('chai').expect;
+var helper        = require('./test_helper');
 var SurveyRequest = require('../lib/SurveyRequest');
 
 describe('SurveyRequest', function() {
+  var server;
+
+  beforeEach(function() {
+    server = helper.server(helper.port);
+  });
+
+  afterEach(function() {
+    server.close();
+  });
+
   describe('.deletePending', function() {
     it('deletes a pending survey request', function(done) {
-      var params = { person_email: 'foo+test@example.com' };
+      var survey = new SurveyRequest(helper.config);
+      var params = { person_email: 'foo@example.com' };
 
-      SurveyRequest.deletePending(params).then(function(request) {
-        expect(request.person_email).to.eq('foo+test@example.com');
+      survey.deletePending(params).then(function(response) {
+        expect(response).to.exist;
         return done();
       });
     });

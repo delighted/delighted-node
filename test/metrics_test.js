@@ -1,14 +1,12 @@
-var expect     = require('chai').expect;
-var Metrics    = require('../lib/Metrics');
-var fakeServer = require('./support/fake_server');
+var expect  = require('chai').expect;
+var Metrics = require('../lib/Metrics');
+var helper  = require('./test_helper');
 
 describe('Metrics', function() {
-  var host = 'localhost';
-  var port = 7654;
   var server;
 
   beforeEach(function() {
-    server = fakeServer(port);
+    server = helper.server(helper.port);
   });
 
   afterEach(function() {
@@ -17,8 +15,7 @@ describe('Metrics', function() {
 
   describe('.retrieve', function() {
     it('pulls down the current metrics', function(done) {
-      var config  = { host: host, port: port };
-      var metrics = new Metrics(config);
+      var metrics = new Metrics(helper.config);
 
       metrics.retrieve().then(function(metrics) {
         expect(metrics.nps).to.eq(0);

@@ -1,15 +1,13 @@
-var expect     = require('chai').expect;
-var fakeServer = require('./support/fake_server');
-var Client     = require('../lib/Client');
-var Thenable   = require('../lib/vendor/Thenable');
+var expect   = require('chai').expect;
+var helper   = require('./test_helper');
+var Client   = require('../lib/Client');
+var Thenable = require('../lib/vendor/Thenable');
 
 describe('Client', function() {
-  var host = 'localhost';
-  var port = 7654;
   var server;
 
   beforeEach(function() {
-    server = fakeServer(port);
+    server = helper.server(helper.port);
   });
 
   afterEach(function() {
@@ -18,14 +16,14 @@ describe('Client', function() {
 
   describe('.get', function() {
     it('returns a promise wrapping the request', function() {
-      var client  = new Client({ host: host, port: port });
+      var client  = new Client(helper.config);
       var promise = client.get('/fake');
 
       expect(promise).to.be.instanceof(Thenable);
     });
 
     it('resolves to a response object', function(done) {
-      var client = new Client({ host: host, port: port });
+      var client = new Client(helper.config);
 
       client.get('/fake').then(function(response) {
         expect(response.status).to.eq(200);
@@ -35,7 +33,7 @@ describe('Client', function() {
     });
 
     it('rejects with custom errors', function(done) {
-      var client = new Client({ host: host, port: port });
+      var client = new Client(helper.config);
 
       client.get('/401').then(function(_) {
       }, function(error) {

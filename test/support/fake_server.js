@@ -1,9 +1,25 @@
 var http = require('http');
 
 var mapping = {
-  '/fake': { status: 200, body: { message: 'OK' } },
-  '/401':  { status: 401, body: null },
-  '/metrics.json': { status: 200, body: { nps: 0 } }
+  '/fake': {
+    status: 200,
+    body: { message: 'OK' }
+  },
+
+  '/401':  {
+    status: 401,
+    body: null
+  },
+
+  '/metrics.json': {
+    status: 200,
+    body: { nps: 0 }
+  },
+
+  '/people/foo%40example.com/survey_requests/pending.json': {
+    status: 200,
+    body: { ok: true }
+  }
 };
 
 var handler = function(request, response) {
