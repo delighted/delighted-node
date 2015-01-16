@@ -22,9 +22,9 @@ describe('delighted', function() {
 
       // 'abcd1234:' => 'YWJjZDEyMzQ6'
 
-      expect(instance.config).to.exist;
-      expect(instance.config).to.have.property('auth');
-      expect(instance.config.auth).to.contain('YWJjZDEyMzQ6');
+      expect(instance.config).to.have.property('headers');
+      expect(instance.config.headers).to.have.property('Authorization');
+      expect(instance.config.headers['Authorization']).to.contain('Basic YWJjZDEyMzQ6');
     });
   });
 });
