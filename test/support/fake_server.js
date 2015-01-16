@@ -21,37 +21,37 @@ var mapping = {
     body: null
   },
 
-  '/metrics.json': {
+  '/metrics': {
     status: 200,
     body: { nps: 0 }
   },
 
-  '/people.json': {
+  '/people': {
     status: 201,
     body: { email: 'foo@example.com' }
   },
 
-  '/people/foo%40example.com/survey_requests/pending.json': {
+  '/people/foo%40example.com/survey_requests/pending': {
     status: 200,
     body: { ok: true }
   },
 
-  '/survey_responses.json': {
+  '/survey_responses': {
     status: 201,
     body: { person: '321' }
   },
 
-  '/survey_responses.json/321': {
+  '/survey_responses/321': {
     status: 200,
     body: { person: '321' }
   },
 
-  '/survey_responses.json?order=desc': {
+  '/survey_responses?order=desc': {
     status: 200,
     body: [{ id: 1 }, { id: 2 }]
   },
 
-  '/unsubscribes.json': {
+  '/unsubscribes': {
     status: 201,
     body: { person_email: 'foo@example.com' }
   }
