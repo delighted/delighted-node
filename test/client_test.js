@@ -44,7 +44,7 @@ describe('Client', function() {
 
       return client.get('/401').then(function(_) {
       }, function(error) {
-        expect(error.message).to.match(/invalid api key/i);
+        expect(error.type).to.eq('AuthenticationError');
       });
     });
   });
