@@ -4,6 +4,21 @@ var delighted = require('../lib/delighted');
 describe('delighted', function() {
   var apiKey = 'abcd1234';
 
+  describe('.VERSION', function() {
+    it('exposes the version on the constructor', function() {
+      var instance = delighted(apiKey);
+
+      expect(instance.VERSION).to.exist;
+    });
+
+    it('injects the version into the user agent header', function() {
+      var instance = delighted(apiKey);
+      var headers  = instance.config.headers;
+
+      expect(headers['User-Agent']).to.contain(instance.VERSION);
+    });
+  });
+
   describe('resources', function() {
     it('defines an instance of all resources', function() {
       var instance = delighted(apiKey);
