@@ -57,6 +57,54 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
+### Adavanced Configuration & Testing
+
+All of the connection details can be configured through the `delighted`
+constructor, primarily for testing purposes. The available configuration options
+are:
+
+* host - defaults to `api.delighted.com`
+* port - defaults to `443`
+* base - defaults to `/v1`
+* headers - specifies JSON for `Accept` and `Content-Type` while setting a
+  versioned `User-Agent`.
+* scheme - defaults to `https`
+
+Testing with real requests against a mock server is the easiest way to
+integration test your application. For convenience, and our own testing, a test
+server is provided with the `delighted` package. Below is an example of testing
+the `person` resource within an application:
+
+```javascript
+var delighted  = require('delighted');
+var mockServer = require('delighted/server');
+var instance   = delighted(API_KEY, {
+  host:   'localhost',
+  port:   5678,
+  base:   '',
+  scheme: 'http'
+});
+
+var mapping = {
+  '/people': {
+    status: 201,
+    body: { email: 'foo@example.com' }
+  }
+};
+
+var server = mockServer(5678, mapping);
+```
+
+Setting up the server only requires a port and a mapping. The mapping should match
+an exact endpoint and will send back a JSON body with the specified status code.
+With the server running you can then make a request:
+
+```javascript
+instance.person.create({ email: 'foo@example.com' }).then(function(response) {
+  console.log(response); //=> { email: 'foo@exampe.com' }
+});
+```
+
 ### Contributing
 
 1. Fork it
