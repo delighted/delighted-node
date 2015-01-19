@@ -26,6 +26,11 @@ var mapping = {
     body: { nps: 0 }
   },
 
+  '/metrics?since=1424381340000': {
+    status: 200,
+    body: { nps: 10 }
+  },
+
   '/people': {
     status: 201,
     body: { email: 'foo@example.com' }
