@@ -14,13 +14,12 @@ describe('SurveyRequest', function() {
   });
 
   describe('.deletePending', function() {
-    it('deletes a pending survey request', function(done) {
+    it('deletes a pending survey request', function() {
       var survey = new SurveyRequest(helper.config);
       var params = { person_email: 'foo@example.com' };
 
-      survey.deletePending(params).then(function(response) {
+      return survey.deletePending(params).then(function(response) {
         expect(response).to.exist;
-        return done();
       });
     });
   });
