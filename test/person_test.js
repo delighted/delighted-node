@@ -34,16 +34,16 @@ describe('Person', function() {
       var materialized = person.materialize({ email: 'foo@example.com' });
 
       expect(materialized).to.be.instanceof(Person);
-      expect(materialized.attributes).to.eql({ email: 'foo@example.com' });
+      expect(materialized.email).to.eql('foo@example.com');
     });
   });
 
   describe('#toJSON', function() {
     it('returns all attributes', function() {
       var person = new Person(helper.config);
-      person.attributes = { email: 'foo@example.com' };
+      var materialized = person.materialize({ email: 'foo@example.com' });
 
-      expect(person.toJSON()).to.eql(person.attributes);
+      expect(materialized.toJSON()).to.eql({ email: 'foo@example.com' });
     });
   });
 });
