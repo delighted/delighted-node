@@ -16,6 +16,11 @@ var mapping = {
     body: { ok: true }
   },
 
+  '/204': {
+    status: 204,
+    body: null
+  },
+
   '/401':  {
     status: 401,
     body: null

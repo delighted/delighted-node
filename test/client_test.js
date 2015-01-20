@@ -59,4 +59,14 @@ describe('Client', function() {
       });
     });
   });
+
+  describe('#put', function() {
+    it('sends a json encoded PUT request', function() {
+      var client = new Client(helper.config);
+
+      return client.put('/204', {}).then(function(response) {
+        expect(response.status).to.eq(204);
+      });
+    });
+  });
 });
