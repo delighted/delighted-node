@@ -27,4 +27,23 @@ describe('Person', function() {
       });
     });
   });
+
+  describe('#materialize', function() {
+    it('creates a new instance with defined attributes', function() {
+      var person = new Person(helper.config);
+      var materialized = person.materialize({ email: 'foo@example.com' });
+
+      expect(materialized).to.be.instanceof(Person);
+      expect(materialized.attributes).to.eql({ email: 'foo@example.com' });
+    });
+  });
+
+  describe('#toJSON', function() {
+    it('returns all attributes', function() {
+      var person = new Person(helper.config);
+      person.attributes = { email: 'foo@example.com' };
+
+      expect(person.toJSON()).to.eql(person.attributes);
+    });
+  });
 });
