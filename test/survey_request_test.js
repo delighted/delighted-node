@@ -6,7 +6,7 @@ describe('SurveyRequest', function() {
   var server;
 
   beforeEach(function() {
-    server = helper.server(helper.port);
+    server = helper.server(helper.port, helper.requests);
   });
 
   afterEach(function() {
