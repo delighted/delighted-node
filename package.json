@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "description": "Delighted API client for Node",
   "main": "delighted.js",
+  "files": [
+    "README.md",
+    "delighted.js",
+    "testing.js",
+    "lib/",
+    "test/support/server"
+  ],
   "scripts": {
     "lint": "jshint lib",
     "test": "mocha"

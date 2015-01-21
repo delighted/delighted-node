@@ -1,45 +1,45 @@
 var expect    = require('chai').expect;
-var delighted = require('../lib/delighted');
+var Delighted = require('../lib/Delighted');
 
 describe('delighted', function() {
   var apiKey = 'abcd1234';
 
   describe('.VERSION', function() {
     it('exposes the version on the constructor', function() {
-      var instance = delighted(apiKey);
+      var delighted = new Delighted(apiKey);
 
-      expect(instance.VERSION).to.exist;
+      expect(delighted.VERSION).to.exist;
     });
 
     it('injects the version into the user agent header', function() {
-      var instance = delighted(apiKey);
-      var headers  = instance.config.headers;
+      var delighted = new Delighted(apiKey);
+      var headers = delighted.config.headers;
 
-      expect(headers['User-Agent']).to.contain(instance.VERSION);
+      expect(headers['User-Agent']).to.contain(delighted.VERSION);
     });
   });
 
   describe('resources', function() {
-    it('defines an instance of all resources', function() {
-      var instance = delighted(apiKey);
+    it('defines an delighted of all resources', function() {
+      var delighted = new Delighted(apiKey);
 
-      expect(instance).to.have.property('metrics');
-      expect(instance).to.have.property('person');
-      expect(instance).to.have.property('surveyRequest');
-      expect(instance).to.have.property('surveyResponse');
-      expect(instance).to.have.property('unsubscribe');
+      expect(delighted).to.have.property('metrics');
+      expect(delighted).to.have.property('person');
+      expect(delighted).to.have.property('surveyRequest');
+      expect(delighted).to.have.property('surveyResponse');
+      expect(delighted).to.have.property('unsubscribe');
     });
   });
 
   describe('apiKey', function() {
     it('sets the encoded apiKey as the config.auth', function() {
-      var instance = delighted(apiKey);
+      var delighted = new Delighted(apiKey);
 
       // 'abcd1234:' => 'YWJjZDEyMzQ6'
 
-      expect(instance.config).to.have.property('headers');
-      expect(instance.config.headers).to.have.property('Authorization');
-      expect(instance.config.headers['Authorization']).to.contain('Basic YWJjZDEyMzQ6');
+      expect(delighted.config).to.have.property('headers');
+      expect(delighted.config.headers).to.have.property('Authorization');
+      expect(delighted.config.headers['Authorization']).to.contain('Basic YWJjZDEyMzQ6');
     });
   });
 });
