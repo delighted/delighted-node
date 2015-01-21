@@ -15,7 +15,7 @@ describe('Person', function() {
 
   describe('#create', function() {
     it('creates a new person and saves it to the server', function() {
-      var person = new Person(helper.config);
+      var person = new Person(helper.client);
       var params = {
         email: 'foo@example.com',
         name: 'Happy Person',
@@ -30,7 +30,7 @@ describe('Person', function() {
 
   describe('#save', function() {
     it('persists the person to the server', function() {
-      var person = new Person(helper.config);
+      var person = new Person(helper.client);
       var materialized = person.materialize({ email: 'foo@example.com' });
 
       materialized.name = 'Happy Person';
@@ -43,7 +43,7 @@ describe('Person', function() {
 
   describe('#materialize', function() {
     it('creates a new instance with defined attributes', function() {
-      var person = new Person(helper.config);
+      var person = new Person(helper.client);
       var materialized = person.materialize({ email: 'foo@example.com' });
 
       expect(materialized).to.be.instanceof(Person);
@@ -53,7 +53,7 @@ describe('Person', function() {
 
   describe('#toJSON', function() {
     it('returns all attributes', function() {
-      var person = new Person(helper.config);
+      var person = new Person(helper.client);
       var materialized = person.materialize({ email: 'foo@example.com' });
 
       expect(materialized.toJSON()).to.eql({ email: 'foo@example.com' });

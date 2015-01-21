@@ -15,7 +15,7 @@ describe('SurveyRequest', function() {
 
   describe('.deletePending', function() {
     it('deletes a pending survey request', function() {
-      var survey = new SurveyRequest(helper.config);
+      var survey = new SurveyRequest(helper.client);
       var params = { person_email: 'foo@example.com' };
 
       return survey.deletePending(params).then(function(response) {

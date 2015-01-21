@@ -15,7 +15,7 @@ describe('Unsubscribe', function() {
 
   describe('#create', function() {
     it('creates an unsubscribe', function() {
-      var unsubscribe = new Unsubscribe(helper.config);
+      var unsubscribe = new Unsubscribe(helper.client);
       var params = { person_email: 'foo@example.com' };
 
       return unsubscribe.create(params).then(function(response) {

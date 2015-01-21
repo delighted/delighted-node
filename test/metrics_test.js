@@ -15,7 +15,7 @@ describe('Metrics', function() {
 
   describe('.retrieve', function() {
     it('pulls down the current metrics', function() {
-      var metrics = new Metrics(helper.config);
+      var metrics = new Metrics(helper.client);
 
       return metrics.retrieve().then(function(metrics) {
         expect(metrics.nps).to.eq(0);
@@ -23,7 +23,7 @@ describe('Metrics', function() {
     });
 
     it('encodes time ranges', function() {
-      var metrics = new Metrics(helper.config);
+      var metrics = new Metrics(helper.client);
       var since   = new Date(2015, 1, 19, 15, 29, 00, 00);
 
       return metrics.retrieve({ since: since }).then(function(metrics) {

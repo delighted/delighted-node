@@ -15,7 +15,7 @@ describe('SurveyResponse', function() {
 
   describe('#create', function() {
     it('creates a new survey response', function() {
-      var survey = new SurveyResponse(helper.config);
+      var survey = new SurveyResponse(helper.client);
       var params = { person: '321' };
 
       return survey.create(params).then(function(response) {
@@ -26,7 +26,7 @@ describe('SurveyResponse', function() {
 
   describe('#retrieve', function() {
     it('retrieves a specific response', function() {
-      var survey = new SurveyResponse(helper.config);
+      var survey = new SurveyResponse(helper.client);
 
       return survey.retrieve('321').then(function(response) {
         expect(response.person).to.eq('321');
@@ -36,7 +36,7 @@ describe('SurveyResponse', function() {
 
   describe('#all', function() {
     it('retrieves multiple responses', function() {
-      var survey = new SurveyResponse(helper.config);
+      var survey = new SurveyResponse(helper.client);
 
       return survey.all({ order: 'desc' }).then(function(response) {
         expect(response).to.have.length(2);
