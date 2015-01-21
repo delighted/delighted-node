@@ -28,6 +28,19 @@ describe('Person', function() {
     });
   });
 
+  describe('#save', function() {
+    it('persists the person to the server', function() {
+      var person = new Person(helper.config);
+      var materialized = person.materialize({ email: 'foo@example.com' });
+
+      materialized.name = 'Happy Person';
+
+      return materialized.save().then(function(person) {
+        expect(materialized.name).to.eq('Happy Person');
+      });
+    });
+  });
+
   describe('#materialize', function() {
     it('creates a new instance with defined attributes', function() {
       var person = new Person(helper.config);
