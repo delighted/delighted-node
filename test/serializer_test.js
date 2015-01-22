@@ -1,8 +1,8 @@
-var expect  = require('chai').expect;
-var adapter = require('../lib/adapter');
-var Person  = require('../lib/resources/Person');
+var expect     = require('chai').expect;
+var serializer = require('../lib/serializer');
+var Person     = require('../lib/resources/Person');
 
-describe('adapter', function() {
+describe('serializer', function() {
   var resources = {
     'person': new Person({})
   };
@@ -18,7 +18,7 @@ describe('adapter', function() {
         }
       });
 
-      var loaded = adapter.load(payload, resources);
+      var loaded = serializer.load(payload, resources);
 
       expect(loaded.person).to.be.instanceof(Person);
     });
@@ -29,7 +29,7 @@ describe('adapter', function() {
         { person: { id: '345' }}
       ]);
 
-      var loaded = adapter.load(payload, resources);
+      var loaded = serializer.load(payload, resources);
 
       expect(loaded).to.have.length(2);
       expect(loaded[0].person).to.be.instanceof(Person);
@@ -41,7 +41,7 @@ describe('adapter', function() {
         person: '123'
       });
 
-      var loaded = adapter.load(payload);
+      var loaded = serializer.load(payload);
 
       expect(loaded.person).to.eq('123');
     });
