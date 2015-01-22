@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var Person = require('../../lib/resources/Person');
-var helper = require('./test_helper');
+var helper = require('../test_helper');
 
 describe('Person', function() {
   var server;

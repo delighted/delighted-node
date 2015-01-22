@@ -1,6 +1,6 @@
 var expect  = require('chai').expect;
 var Metrics = require('../../lib/resources/Metrics');
-var helper  = require('./test_helper');
+var helper  = require('../test_helper');
 
 describe('Metrics', function() {
   var server;

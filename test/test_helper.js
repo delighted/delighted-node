@@ -32,7 +32,7 @@ var requests = {
     body: { nps: 0 }
   },
 
-  '/metrics?since=1424381340000': {
+  '/metrics?since=1424381340': {
     status: 200,
     body: { nps: 10 }
   },

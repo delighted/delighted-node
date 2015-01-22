@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var query = require('../lib/utils/queryparams');
+var query = require('../../lib/utils/queryparams');
 
 describe('queryparams', function() {
   describe('.stringify', function() {

@@ -1,6 +1,6 @@
 var expect        = require('chai').expect;
-var helper        = require('./test_helper');
 var SurveyRequest = require('../../lib/resources/SurveyRequest');
+var helper        = require('../test_helper');
 
 describe('SurveyRequest', function() {
   var server;
