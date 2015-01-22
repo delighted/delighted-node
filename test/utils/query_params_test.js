@@ -9,5 +9,12 @@ describe('queryparams', function() {
 
       expect(dumped).to.match(/since=\d+/);
     });
+
+    it('limits converted dates to second resolution', function() {
+      var params = { since: new Date() };
+      var dumped = query.stringify(params);
+
+      expect(dumped).to.match(/=\d{10}$/);
+    });
   });
 });
