@@ -31,4 +31,14 @@ describe('Metrics', function() {
       });
     });
   });
+
+  describe('extraneous methods', function() {
+    it('does not inherit unused methods', function() {
+      var metrics = new Metrics({});
+
+      expect(metrics).not.to.have.property('all');
+      expect(metrics).not.to.have.property('create');
+      expect(metrics).not.to.have.property('save');
+    });
+  });
 });
