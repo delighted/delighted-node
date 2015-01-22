@@ -1,7 +1,6 @@
 # Delighted API Node Client
 
-Official node.js client for the Delighted API. This is intended for server-side
-use only and does not support client side JavaScript.
+Official node.js client for the Delighted API. This is intended for server-side use only and does not support client side JavaScript.
 
 ### Usage
 
@@ -11,9 +10,7 @@ Configuration and initialize the client all in one go:
 var delighted = require('delighted')('API_KEY');
 ```
 
-All resources can be accessed directly off of the `delighted` instance. Also,
-all actions immediately return a promise. In this initial example we'll create a
-person and log out their attributes when the promise resolves (finishes):
+All resources can be accessed directly off of the `delighted` instance. Also, all actions immediately return a promise. In this initial example we'll create a person and log out their attributes when the promise resolves (finishes):
 
 ```javascript
 var params = { email: 'lady@example.com', name: 'Lady', delay: 60 };
@@ -36,8 +33,7 @@ delighted.surveyRequest.delete_pending({
 });
 ```
 
-Responses can be created for somebody using their id. Note that the id is not
-the same as their email:
+Responses can be created for somebody using their id. Note that the id is not the same as their email:
 
 ```javascript
 delighted.surveyResponse.create({ person: person.id, score: 10 });
@@ -59,9 +55,7 @@ delighted.metrics.retrieve();
 
 ### Adavanced Configuration & Testing
 
-All of the connection details can be configured through the `delighted`
-constructor, primarily for testing purposes. The available configuration options
-are:
+All of the connection details can be configured through the `delighted` constructor, primarily for testing purposes. The available configuration options are:
 
 * host - defaults to `api.delighted.com`
 * port - defaults to `443`
@@ -70,10 +64,7 @@ are:
   versioned `User-Agent`.
 * scheme - defaults to `https`
 
-Testing with real requests against a mock server is the easiest way to
-integration test your application. For convenience, and our own testing, a test
-server is provided with the `delighted` package. Below is an example of testing
-the `person` resource within an application:
+Testing with real requests against a mock server is the easiest way to integration test your application. For convenience, and our own testing, a test server is provided with the `delighted` package. Below is an example of testing the `person` resource within an application:
 
 ```javascript
 var delighted  = require('delighted');
@@ -95,9 +86,7 @@ var mapping = {
 var server = mockServer(5678, mapping);
 ```
 
-Setting up the server only requires a port and a mapping. The mapping should match
-an exact endpoint and will send back a JSON body with the specified status code.
-With the server running you can then make a request:
+Setting up the server only requires a port and a mapping. The mapping should match an exact endpoint and will send back a JSON body with the specified status code. With the server running you can then make a request:
 
 ```javascript
 instance.person.create({ email: 'foo@example.com' }).then(function(response) {
