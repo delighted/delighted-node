@@ -1,7 +1,7 @@
 {
-  "name": "delighted-js",
+  "name": "delighted",
   "version": "0.1.0",
-  "description": "Delighted API client for Node",
+  "description": "Delighted API Node Client",
   "main": "delighted.js",
   "files": [
     "README.md",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/delighted/delighted-js"
+    "url": "https://github.com/delighted/delighted-node"
   },
   "keywords": [
     "delighted"
@@ -24,9 +24,9 @@
   "author": "Parker Selbert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/delighted/delighted-js/issues"
+    "url": "https://github.com/delighted/delighted-node/issues"
   },
-  "homepage": "https://github.com/delighted/delighted-js",
+  "homepage": "https://github.com/delighted/delighted-node",
   "devDependencies": {
     "chai": "^1.10.0",
     "jshint": "^2.5.11",
