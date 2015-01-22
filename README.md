@@ -25,7 +25,7 @@ For further options, read the [advanced configuration section](#advanced-configu
 All resources can be accessed directly off of the `delighted` instance we created above. All actions immediately return a promise. In this initial example we'll create a person and log out their attributes when the promise resolves (finishes):
 
 ```javascript
-var params = { email: 'lady@example.com', name: 'Lady', delay: 60 };
+var params = { email: 'jony@appleseed.com', name: 'Lady', delay: 60 };
 delighted.person.create(params).then(function(person) {
   console.log(person);
 });
@@ -34,13 +34,13 @@ delighted.person.create(params).then(function(person) {
 Previously subscribed people can be unsubscribed:
 
 ```javascript
-delighted.unsubscribe.create({ person_email: 'lady@example.com' });
+delighted.unsubscribe.create({ person_email: 'jony@appleseed.com' });
 ```
 
 Pending survey requests can be deleted:
 
 ```javascript
-delighted.surveyRequest.delete_pending({ person_email: 'lady@example.com' });
+delighted.surveyRequest.delete_pending({ person_email: 'jony@appleseed.com' });
 ```
 
 Responses can be created for somebody using their id. Note that the id is not the same as their email:
