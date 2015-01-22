@@ -12,7 +12,7 @@ describe('delighted', function() {
     });
 
     it('injects the version into the user agent header', function() {
-      var delighted = new Delighted(apiKey);
+      var delighted = new Delighted(apiKey, { headers: {}});
       var headers = delighted.config.headers;
 
       expect(headers['User-Agent']).to.contain(delighted.VERSION);
