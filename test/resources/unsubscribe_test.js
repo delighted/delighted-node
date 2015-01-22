@@ -1,5 +1,5 @@
 var expect      = require('chai').expect;
-var Unsubscribe = require('../lib/unsubscribe');
+var Unsubscribe = require('../../lib/resources/unsubscribe');
 var helper      = require('./test_helper');
 
 describe('Unsubscribe', function() {

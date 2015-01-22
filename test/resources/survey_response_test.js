@@ -1,5 +1,5 @@
 var expect         = require('chai').expect;
-var SurveyResponse = require('../lib/SurveyResponse');
+var SurveyResponse = require('../../lib/resources/SurveyResponse');
 var helper         = require('./test_helper');
 
 describe('SurveyResponse', function() {

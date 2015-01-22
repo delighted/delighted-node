@@ -1,6 +1,6 @@
 var expect  = require('chai').expect;
 var adapter = require('../lib/adapter');
-var Person  = require('../lib/Person');
+var Person  = require('../lib/resources/Person');
 
 describe('adapter', function() {
   var resources = {
