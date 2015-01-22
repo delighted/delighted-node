@@ -1,16 +1,28 @@
 # Delighted API Node Client
 
-Official node.js client for the Delighted API. This is intended for server-side use only and does not support client side JavaScript.
+Official Node.js client for the [Delighted API](https://delighted.com/docs/api).
 
-### Usage
+**Note:** This is intended for server-side use only and does not support client-side JavaScript.
 
-Configuration and initialize the client all in one go:
+## Installation
+
+Run `npm install delighted` to install.
+
+## Configuration
+
+To get started, you need to require the client and configure it with your secret API key. You can require, configure and initialize the client in one go:
 
 ```javascript
-var delighted = require('delighted')('API_KEY');
+var delighted = require('delighted')('YOUR_API_KEY');
 ```
 
-All resources can be accessed directly off of the `delighted` instance. Also, all actions immediately return a promise. In this initial example we'll create a person and log out their attributes when the promise resolves (finishes):
+For further options, read the [advanced configuration section](#advanced-configuration).
+
+**Note:** Your API key is secret, and you should treat it like a password. You can find your API key in your Delighted account, under *Settings* > *API*.
+
+## Usage
+
+All resources can be accessed directly off of the `delighted` instance we created above. All actions immediately return a promise. In this initial example we'll create a person and log out their attributes when the promise resolves (finishes):
 
 ```javascript
 var params = { email: 'lady@example.com', name: 'Lady', delay: 60 };
@@ -28,9 +40,7 @@ delighted.unsubscribe.create({ person_email: 'lady@example.com' });
 Pending survey requests can be deleted:
 
 ```javascript
-delighted.surveyRequest.delete_pending({
-  person_email: 'lady@example.com'
-});
+delighted.surveyRequest.delete_pending({ person_email: 'lady@example.com' });
 ```
 
 Responses can be created for somebody using their id. Note that the id is not the same as their email:
@@ -53,23 +63,22 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
-### Adavanced Configuration & Testing
+## <a name="advanced-configuration"></a> Adavanced configuration & testing
 
 All of the connection details can be configured through the `delighted` constructor, primarily for testing purposes. The available configuration options are:
 
-* host - defaults to `api.delighted.com`
-* port - defaults to `443`
-* base - defaults to `/v1`
-* headers - specifies JSON for `Accept` and `Content-Type` while setting a
-  versioned `User-Agent`.
-* scheme - defaults to `https`
+* `host` – defaults to `api.delighted.com`
+* `port` – defaults to `443`
+* `base` – defaults to `/v1`
+* `headers` – defaults to specifying `application/json` for `Accept` and `Content-Type` and sets `User-Agent` to identify the Delighted API Node Client and version.
+* `scheme` – defaults to `https`
 
 Testing with real requests against a mock server is the easiest way to integration test your application. For convenience, and our own testing, a test server is provided with the `delighted` package. Below is an example of testing the `person` resource within an application:
 
 ```javascript
 var delighted  = require('delighted');
 var mockServer = require('delighted/server');
-var instance   = delighted(API_KEY, {
+var instance   = delighted('DUMMY_API_KEY', {
   host:   'localhost',
   port:   5678,
   base:   '',
@@ -94,10 +103,10 @@ instance.person.create({ email: 'foo@example.com' }).then(function(response) {
 });
 ```
 
-### Contributing
+## Contributing
 
 1. Fork it
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
