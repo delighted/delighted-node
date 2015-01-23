@@ -25,7 +25,12 @@ For further options, read the [advanced configuration section](#advanced-configu
 All resources can be accessed directly off of the `delighted` instance we created above. All actions immediately return a promise. In this initial example we'll create a person and log out their attributes when the promise resolves (finishes):
 
 ```javascript
-var params = { email: 'jony@appleseed.com', name: 'Lady', delay: 60 };
+var params = {
+  email: 'jony@appleseed.com',
+  name:  'Jony Appleseed',
+  delay: 86400
+};
+
 delighted.person.create(params).then(function(person) {
   console.log(person);
 });
