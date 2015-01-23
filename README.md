@@ -6,7 +6,7 @@ Official Node.js client for the [Delighted API](https://delighted.com/docs/api).
 
 ## Installation
 
-Run `npm install delighted` to install.
+Run `npm install delighted --save` to install.
 
 ## Configuration
 
