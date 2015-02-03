@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var errors = require('../lib/errors');
+var errors = require('../lib/Errors');
 
 describe('Errors', function() {
   it('maps status codes to custom errors', function() {
