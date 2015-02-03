@@ -32,6 +32,13 @@ var requests = {
     body: { nps: 0 }
   },
 
+  // 1424377740 <- Linux
+  '/metrics?since=1424377740': {
+    status: 200,
+    body: { nps: 10 }
+  },
+
+  // 1424381340 <- OS X
   '/metrics?since=1424381340': {
     status: 200,
     body: { nps: 10 }

@@ -22,9 +22,10 @@ describe('Metrics', function() {
       });
     });
 
+    // 1424377740
     it('encodes time ranges', function() {
       var metrics = new Metrics(helper.client);
-      var since   = new Date(2015, 1, 19, 15, 29, 00, 00);
+      var since   = new Date(2015, 1, 19, 15, 29, 0, 0);
 
       return metrics.retrieve({ since: since }).then(function(metrics) {
         expect(metrics.nps).to.eq(10);
