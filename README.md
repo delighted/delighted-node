@@ -47,7 +47,7 @@ delighted.unsubscribe.create({ person_email: 'jony@appleseed.com' });
 Pending survey requests can be deleted:
 
 ```javascript
-delighted.surveyRequest.delete_pending({ person_email: 'jony@appleseed.com' });
+delighted.surveyRequest.deletePending({ person_email: 'jony@appleseed.com' });
 ```
 
 Responses can be created for somebody using their id. Note that the id is not the same as their email:
