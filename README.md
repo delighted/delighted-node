@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/delighted/delighted-node.svg)](https://travis-ci.org/delighted/delighted-node)
+
 # Delighted API Node Client
 
 Official Node.js client for the [Delighted API](https://delighted.com/docs/api).
