@@ -70,7 +70,7 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
-## <a name="advanced-configuration"></a> Adavanced configuration & testing
+## <a name="advanced-configuration"></a> Advanced configuration & testing
 
 All of the connection details can be configured through the `delighted` constructor, primarily for testing purposes. The available configuration options are:
 
