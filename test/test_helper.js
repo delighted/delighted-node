@@ -2,67 +2,72 @@ var server = require('./support/server');
 var Client = require('../lib/Client');
 
 var requests = {
-  '/fake': {
+  'GET /fake': {
     status: 200,
     body: { message: 'OK' }
   },
 
-  '/fake?per_page=20&page=10': {
+  'GET /fake?per_page=20&page=10': {
     status: 200,
     body: { message: 'ALRIGHT' }
   },
 
-  '/201': {
+  'POST /201': {
     status: 201,
     body: { ok: true }
   },
 
-  '/204': {
+  'PUT /204': {
     status: 204,
     body: null
   },
 
-  '/401':  {
+  'GET /401':  {
     status: 401,
     body: null
   },
 
-  '/metrics': {
+  'GET /metrics': {
     status: 200,
     body: { nps: 0 }
   },
 
-  '/metrics?since=1424359740': {
+  'GET /metrics?since=1424359740': {
     status: 200,
     body: { nps: 10 }
   },
 
-  '/people': {
+  'POST /people': {
     status: 201,
     body: { email: 'foo@example.com' }
   },
 
-  '/people/foo%40example.com/survey_requests/pending': {
+  'PUT /people': {
+    status: 201,
+    body: { email: 'foo@example.com' }
+  },
+
+  'DELETE /people/foo%40example.com/survey_requests/pending': {
     status: 200,
     body: { ok: true }
   },
 
-  '/survey_responses': {
+  'POST /survey_responses': {
     status: 201,
     body: { person: '321' }
   },
 
-  '/survey_responses/321': {
+  'GET /survey_responses/321': {
     status: 200,
     body: { person: '321' }
   },
 
-  '/survey_responses?order=desc': {
+  'GET /survey_responses?order=desc': {
     status: 200,
     body: [{ id: 1 }, { id: 2 }]
   },
 
-  '/unsubscribes': {
+  'POST /unsubscribes': {
     status: 201,
     body: { person_email: 'foo@example.com' }
   }
