@@ -23,4 +23,14 @@ describe('Unsubscribe', function() {
       });;
     });
   });
+
+  describe('#all', function() {
+    it('retrieves all unsubcribes', function() {
+      var unsubscribe = new Unsubscribe(helper.client);
+
+      return unsubscribe.all().then(function(response) {
+        expect(response).to.have.length(2);
+      });
+    });
+  });
 });

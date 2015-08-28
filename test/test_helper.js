@@ -70,6 +70,22 @@ var requests = {
   'POST /unsubscribes': {
     status: 201,
     body: { person_email: 'foo@example.com' }
+  },
+
+  'GET /unsubscribes': {
+    status: 200,
+    body: [
+      { person_id: '475', email: 'foo@example.com', name: 'Foo', unsubscribed_at: 1440621400 },
+      { person_id: '634', email: 'bar@example.com', name: 'Bar', unsubscribed_at: 1440621453 }
+    ]
+  },
+
+  'GET /bounces': {
+    status: 200,
+    body: [
+      { person_id: '475', email: 'foo@example.com', name: 'Foo', bounced_at: 1440621400 },
+      { person_id: '634', email: 'bar@example.com', name: 'Bar', bounced_at: 1440621453 }
+    ]
   }
 };
 
