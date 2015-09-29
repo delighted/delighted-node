@@ -44,6 +44,22 @@ Previously subscribed people can be unsubscribed:
 delighted.unsubscribe.create({ person_email: 'jony@appleseed.com' });
 ```
 
+Get a paginated list of people who have unsubscribed:
+
+```javascript
+delighted.unsubscribe.all({ page: 2}).then(function(responses) {
+  responses.length; // => 20
+});
+```
+
+Get a paginated list of people whose emails have bounced:
+
+```javascript
+delighted.bounce.all({ page: 2}).then(function(responses) {
+  responses.length; // => 20
+});
+```
+
 Pending survey requests can be deleted:
 
 ```javascript
@@ -114,9 +130,10 @@ instance.person.create({ email: 'foo@example.com' }).then(function(response) {
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Run the tests (`npm run-script test`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 ## Author
 
