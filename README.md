@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/delighted/delighted-node.svg)](https://travis-ci.org/delighted/delighted-node)
+[![Build Status](https://travis-ci.org/delighted/delighted-node.svg?branch=master)](https://travis-ci.org/delighted/delighted-node)
 
 # Delighted API Node Client
 
