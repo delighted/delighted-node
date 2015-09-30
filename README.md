@@ -1,6 +1,6 @@
 [![Build Status](https://img.shields.io/travis/delighted/delighted-node.svg)](https://travis-ci.org/delighted/delighted-node)
 
-# Delighted API Node Client (Beta)
+# Delighted API Node Client
 
 Official Node.js client for the [Delighted API](https://delighted.com/docs/api).
 
