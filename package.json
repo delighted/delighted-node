@@ -1,6 +1,6 @@
 {
   "name": "delighted",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Delighted API Node Client",
   "main": "delighted.js",
   "files": [

@@ -1,3 +1,9 @@
+## 1.1.1 (2015-11-18)
+
+Bugfixes:
+
+- Allow passing of options via `require('delighted')(key, options)`
+
 ## 1.1.0 (2015-09-29)
 
 Features:
