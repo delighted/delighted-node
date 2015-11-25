@@ -1,3 +1,9 @@
+## 1.1.2 (2015-11-24)
+
+Bugfixes:
+
+- Fix calculation of Content-Length header value when using UTF-8.
+
 ## 1.1.1 (2015-11-18)
 
 Bugfixes:
