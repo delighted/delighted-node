@@ -3,7 +3,7 @@ var http = require('http');
 module.exports = function(port, mapping) {
   var handler = function(request, response) {
     var mapped = mapping[request.method + " " + request.url];
-    var body = JSON.stringify(mapped.body);
+    var body = mapped.body_raw || JSON.stringify(mapped.body);
 
     response.writeHead(mapped.status);
     response.end(body);

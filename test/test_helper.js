@@ -86,6 +86,11 @@ var requests = {
       { person_id: '475', email: 'foo@example.com', name: 'Foo', bounced_at: 1440621400 },
       { person_id: '634', email: 'bar@example.com', name: 'Bar', bounced_at: 1440621453 }
     ]
+  },
+
+  'GET /empty_body': {
+    status: 200,
+    body_raw: ''
   }
 };
 

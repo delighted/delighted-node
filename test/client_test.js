@@ -69,4 +69,15 @@ describe('Client', function() {
       });
     });
   });
+
+  describe('general response body handling', function() {
+    it('succeeds empty response body', function() {
+      var client = new Client(helper.config);
+
+      return client.get('/empty_body').then(function(response) {
+        expect(response.status).to.eq(200);
+        expect(response.body).to.eql(undefined);
+      });
+    });
+  });
 });
