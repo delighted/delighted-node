@@ -91,6 +91,11 @@ var requests = {
   'GET /empty_body': {
     status: 200,
     body_raw: ''
+  },
+
+  'GET /invalid_json': {
+    status: 200,
+    body_raw: '{"invalid_json":123'
   }
 };
 

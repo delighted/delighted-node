@@ -79,5 +79,15 @@ describe('Client', function() {
         expect(response.body).to.eql(undefined);
       });
     });
+
+    it('rejects invalid JSON response body', function() {
+      var client = new Client(helper.config);
+
+      return client.get('/invalid_json').then(function(_) {
+        expect(false).to.be(true);
+      }, function(error) {
+        expect(error.type).to.eq('GeneralClientError');
+      });
+    });
   });
 });
