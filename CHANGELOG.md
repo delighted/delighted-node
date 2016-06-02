@@ -1,3 +1,9 @@
+## 1.1.3 (Unreleased)
+
+Bugfixes:
+
+- Fail gracefully when parsing invalid JSON from response body.
+
 ## 1.1.2 (2015-11-24)
 
 Bugfixes:
