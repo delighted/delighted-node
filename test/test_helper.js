@@ -88,9 +88,9 @@ var requests = {
     ]
   },
 
-  'GET /empty_body': {
+  'GET /no_body': {
     status: 200,
-    body_raw: ''
+    body_raw: null
   },
 
   'GET /invalid_json': {
