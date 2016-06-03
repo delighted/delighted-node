@@ -1,4 +1,4 @@
-## 1.1.3-rc1 (Unreleased)
+## 1.1.3 (2015-06-02)
 
 Bugfixes:
 
