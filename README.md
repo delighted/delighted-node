@@ -109,7 +109,7 @@ var instance   = delighted('DUMMY_API_KEY', {
 });
 
 var mapping = {
-  '/v1/people': {
+  'POST /v1/people': {
     status: 201,
     body: { email: 'foo@example.com' }
   }
