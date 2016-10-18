@@ -1,1 +1,1 @@
-module.exports = require('./testing/support/server');
+module.exports = require('./test/support/server');
