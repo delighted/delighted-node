@@ -1,3 +1,9 @@
+## 1.1.4 (2016-10-25)
+
+Bugfixes:
+
+- Fix path in to test server (#10).
+
 ## 1.1.3 (2015-06-02)
 
 Bugfixes:
