@@ -1,3 +1,9 @@
+## 1.1.5-rc1
+
+Bugfixes:
+
+- Fix error object to include response body.
+
 ## 1.1.4 (2016-10-25)
 
 Bugfixes:
