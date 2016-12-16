@@ -27,6 +27,11 @@ var requests = {
     body: null
   },
 
+  'GET /422':  {
+    status: 422,
+    body: { data: "an error occurred" }
+  },
+
   'GET /metrics': {
     status: 200,
     body: { nps: 0 }

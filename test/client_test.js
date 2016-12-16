@@ -45,6 +45,18 @@ describe('Client', function() {
       return client.get('/401').then(function(_) {
       }, function(error) {
         expect(error.type).to.eq('AuthenticationError');
+        expect(error.message).to.eq(null);
+      });
+    });
+
+    it('rejects with custom errors, including response body', function() {
+      var client = new Client(helper.config);
+
+      return client.get('/422').then(function(_) {
+      }, function(error) {
+        console.log('error', error);
+        expect(error.type).to.eq('ResourceValidationError');
+        expect(error.message).to.eql({ data: 'an error occurred' });
       });
     });
   });
