@@ -70,6 +70,18 @@ describe('Client', function() {
         expect(response.body).to.eql({ ok: true });
       });
     });
+
+    it('does not modify client default headers', function() {
+      var config = Object.assign(
+        {}, helper.config, { headers: { 'User-Agent': 'header test' } }
+      );
+      var originalHeaders = Object.assign({}, config.headers);
+      var client = new Client(config);
+
+      return client.post('/201', { ok: true }).then(function(response) {
+        expect(client.headers).to.eql(originalHeaders);
+      });
+    });
   });
 
   describe('#put', function() {
