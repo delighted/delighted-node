@@ -146,6 +146,15 @@ server.close();
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create new Pull Request
 
+## Releasing
+
+1. Decide on the new version number (let's call it `x`).
+2. Update `CHANGELOG.md` with notes about the new version's changes.
+3. Update the version number in `lib/Delighted.js`.
+4. Commit your changes to git.
+5. Run `npm version major | minor | patch | prerelease`. This will update the version in `package.json` and create a git tag for the version number; make sure it matches the chosen version number `x` (if you make further changes in git after this, be sure to update the tag with `git tag -f v<x>`).
+6. Run `npm publish` to upload it to the NPM package registry.
+
 ## Author
 
 Originally by Sean McGary. Graciously transfered and now officially maintained by Delighted.
