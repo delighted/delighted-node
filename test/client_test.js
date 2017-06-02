@@ -72,10 +72,16 @@ describe('Client', function() {
     });
 
     it('does not modify client default headers', function() {
-      var config = Object.assign(
-        {}, helper.config, { headers: { 'User-Agent': 'header test' } }
-      );
-      var originalHeaders = Object.assign({}, config.headers);
+      var originalHeaders = { 'User-Agent': 'header test' };
+      var clone = function(source) {
+        var target = {};
+        for (var name in source) {
+          if (source.hasOwnProperty(name)) { target[name] = source[name]; }
+        }
+        return target;
+      }
+      var config = clone(helper.config);
+      config.headers = clone(originalHeaders);
       var client = new Client(config);
 
       return client.post('/201', { ok: true }).then(function(response) {
