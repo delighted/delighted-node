@@ -109,9 +109,9 @@ var instance   = delighted('DUMMY_API_KEY', {
 });
 
 var mapping = {
-  '/people': {
+  'POST /v1/people': {
     status: 201,
-    body: { email: 'foo@example.com' }
+    body: { id: "1", email: 'foo@example.com', name: null, survey_scheduled_at: 1490298348 }
   }
 };
 
@@ -121,9 +121,20 @@ var server = mockServer(5678, mapping);
 Setting up the server only requires a port and a mapping. The mapping should match an exact endpoint and will send back a JSON body with the specified status code. With the server running you can then make a request:
 
 ```javascript
-instance.person.create({ email: 'foo@example.com' }).then(function(response) {
-  console.log(response); //=> { email: 'foo@exampe.com' }
-});
+instance.person.create({ email: 'foo@example.com' }).then(
+  function(person) {
+    console.log(person.survey_scheduled_at); //=> 1490298348
+  },
+  function(error) {
+    console.log(error.type); //=> ResourceValidationError
+  }
+);
+```
+
+When you are done reading responses from the server, be sure to close it.
+
+```javascript
+server.close();
 ```
 
 ## Contributing

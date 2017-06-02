@@ -70,6 +70,24 @@ describe('Client', function() {
         expect(response.body).to.eql({ ok: true });
       });
     });
+
+    it('does not modify client default headers', function() {
+      var originalHeaders = { 'User-Agent': 'header test' };
+      var clone = function(source) {
+        var target = {};
+        for (var name in source) {
+          if (source.hasOwnProperty(name)) { target[name] = source[name]; }
+        }
+        return target;
+      }
+      var config = clone(helper.config);
+      config.headers = clone(originalHeaders);
+      var client = new Client(config);
+
+      return client.post('/201', { ok: true }).then(function(response) {
+        expect(client.headers).to.eql(originalHeaders);
+      });
+    });
   });
 
   describe('#put', function() {
