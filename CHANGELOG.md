@@ -1,3 +1,9 @@
+## 1.2.0 (Unreleased)
+
+Features:
+
+- Adds support for 429 rate limited HTTP responses.
+
 ## 1.1.5-rc.3
 
 Bugfixes:
