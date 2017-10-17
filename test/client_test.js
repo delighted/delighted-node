@@ -59,6 +59,17 @@ describe('Client', function() {
         expect(error.message).to.eql({ data: 'an error occurred' });
       });
     });
+
+    it('rejects with custom errors, including 429 responses', function() {
+      var client = new Client(helper.config);
+
+      return client.get('/429').then(function(_) {
+      }, function(error) {
+        console.log('error', error);
+        expect(error.type).to.eq('TooManyRequestsError');
+        expect(error.retryAfter).to.eql(5);
+      });
+    });
   });
 
   describe('#post', function() {

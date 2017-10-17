@@ -32,6 +32,14 @@ var requests = {
     body: { data: "an error occurred" }
   },
 
+  'GET /429':  {
+    status: 429,
+    body: null,
+    headers: {
+      'Retry-After': '5'
+    }
+  },
+
   'GET /metrics': {
     status: 200,
     body: { nps: 0 }
