@@ -16,7 +16,6 @@ describe('Errors', function() {
     expect(unauthorized.stack).to.be.a('string');
 
     var rateLimited = errors('429', 'foo', { retryAfter: 5 });
-    console.log(Object.keys(rateLimited))
     expect(rateLimited.name).to.eq('Error');
     expect(rateLimited.type).to.eq('TooManyRequestsError');
     expect(rateLimited.message).to.eq('foo');
