@@ -86,6 +86,25 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
+## Rate limits
+
+If a request is rate limited, a `DelightedError` error is raised with a type of `TooManyRequestsError`. You can handle that error to implement exponential backoff or retry strategies. The error object provides a `.retry_after` property to tell you how many seconds you should wait before retrying. For example:
+
+```js
+instance.metrics.retrieve().then(
+  function(metrics) { ... },
+  function(error) {
+    if (error.type === 'TooManyRequestsError') { // rate limited
+      var retryAfterSeconds = error.retry_after;
+      // wait for retry_after_seconds before retrying
+      // add your retry strategy here ...
+    } else {
+      // some other type of error
+    }
+  }
+);
+```
+
 ## <a name="advanced-configuration"></a> Advanced configuration & testing
 
 All of the connection details can be configured through the `delighted` constructor, primarily for testing purposes. The available configuration options are:
