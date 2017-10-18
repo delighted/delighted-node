@@ -96,7 +96,7 @@ instance.metrics.retrieve().then(
   function(error) {
     if (error.type === 'TooManyRequestsError') { // rate limited
       var retryAfterSeconds = error.retry_after;
-      // wait for retry_after_seconds before retrying
+      // wait for retryAfterSeconds before retrying
       // add your retry strategy here ...
     } else {
       // some other type of error
