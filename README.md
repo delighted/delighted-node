@@ -171,7 +171,7 @@ server.close();
 2. Update `CHANGELOG.md` with notes about the new version's changes.
 3. Update the version number in `lib/Delighted.js` and `package.json` and create a git tag for the version number (use `git tag -l` to check the format).
 4. Commit your changes to git and push the tag.
-5. Run `npm publish` to upload it to the NPM package registry. If pushing a pre-release, use `npm publish --no-tag` to avoid tagging as the latest release.
+5. Run `npm publish --tag next` to upload a pre-release to the NPM package registry, use `npm publish --tag latest` to upload the final release
 
 ## Author
 
