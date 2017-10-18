@@ -4,16 +4,11 @@ Features:
 
 - Adds support for 429 rate limited HTTP responses.
 
-## 1.1.5-rc.3
+## 1.1.5 (Prerelease)
 
 Bugfixes:
 
 - Headers that are set for a particular request are no longer erroneously carried over to other requests. This could cause connection problems with the server if a Content-Length header was set by a previous request and was not applicable for the next request.
- 
-## 1.1.5-rc.2
-
-Bugfixes:
-
 - Fix error object to include response body.
 
 ## 1.1.4 (2016-10-25)
