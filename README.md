@@ -30,7 +30,8 @@ All resources can be accessed directly off of the `delighted` instance we create
 var params = {
   email: 'jony@appleseed.com',
   name:  'Jony Appleseed',
-  delay: 86400
+  delay: 86400,
+  properties: { plan: 'basic' } // an object to pass properties for segmentation
 };
 
 delighted.person.create(params).then(function(person) {
