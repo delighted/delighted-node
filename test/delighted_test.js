@@ -41,5 +41,11 @@ describe('delighted', function() {
       expect(delighted.config.headers).to.have.property('Authorization');
       expect(delighted.config.headers['Authorization']).to.contain('Basic YWJjZDEyMzQ6');
     });
+
+    it('does leak API key into future instances', function() {
+      var a = new Delighted('foo');
+      var b = new Delighted('bar');
+      expect(a.config.headers.Authorization).to.not.equal(b.config.headers.Authorization);
+    });
   });
 });
