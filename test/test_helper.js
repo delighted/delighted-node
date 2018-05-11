@@ -60,6 +60,21 @@ var requests = {
     body: { email: 'foo@example.com' }
   },
 
+  'DELETE /people/42': {
+    status: 202,
+    body: { ok: true }
+  },
+
+  'DELETE /people/email:foo@example.com': {
+    status: 202,
+    body: { ok: true }
+  },
+
+  'DELETE /people/phone_number:+14155551212': {
+    status: 202,
+    body: { ok: true }
+  },
+
   'DELETE /people/foo%40example.com/survey_requests/pending': {
     status: 200,
     body: { ok: true }
