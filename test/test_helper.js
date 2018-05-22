@@ -65,12 +65,12 @@ var requests = {
     body: { ok: true }
   },
 
-  'DELETE /people/email:foo@example.com': {
+  'DELETE /people/email%3Afoo%40example.com': {
     status: 202,
     body: { ok: true }
   },
 
-  'DELETE /people/phone_number:+14155551212': {
+  'DELETE /people/phone_number%3A%2B14155551212': {
     status: 202,
     body: { ok: true }
   },
