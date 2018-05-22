@@ -66,7 +66,7 @@ Deleting a person and all of the data associated with them:
 ```javascript
 // Delete by person id
 delighted.person.delete({ id: 42 })
-// Delete by email address
+// Delete by email address (must be E.164 format)
 delighted.person.delete({ email: "test@example.com" })
 // Delete by phone number
 delighted.person.delete({ phone_number: "+14155551212" })
