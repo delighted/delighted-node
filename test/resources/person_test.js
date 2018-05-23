@@ -41,6 +41,29 @@ describe('Person', function() {
     });
   });
 
+  describe('#delete', function() {
+    it('deletes a person by id', function () {
+      var person = new Person(helper.client);
+      return person.delete({ id: 42 }).then(function(response) {
+        expect(response.ok).to.eq(true);
+      });
+    });
+
+    it('deletes a person by email address', function () {
+      var person = new Person(helper.client);
+      return person.delete({ email: "foo@example.com" }).then(function(response) {
+        expect(response.ok).to.eq(true);
+      });
+    });
+
+    it('deletes a person by phone number', function () {
+      var person = new Person(helper.client);
+      return person.delete({ phone_number: "+14155551212" }).then(function(response) {
+        expect(response.ok).to.eq(true);
+      });
+    });
+  });
+
   describe('#materialize', function() {
     it('creates a new instance with defined attributes', function() {
       var person = new Person(helper.client);

@@ -1,3 +1,9 @@
+## Unreleased
+
+Features:
+
+- Adds support for deleting people
+
 ## 1.2.0 (2017-10-18)
 
 Features:

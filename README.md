@@ -61,6 +61,17 @@ delighted.bounce.all({ page: 2}).then(function(responses) {
 });
 ```
 
+Deleting a person and all of the data associated with them:
+
+```javascript
+// Delete by person id
+delighted.person.delete({ id: 42 })
+// Delete by email address (must be E.164 format)
+delighted.person.delete({ email: "test@example.com" })
+// Delete by phone number
+delighted.person.delete({ phone_number: "+14155551212" })
+```
+
 Pending survey requests can be deleted:
 
 ```javascript
