@@ -45,6 +45,53 @@ Previously subscribed people can be unsubscribed:
 delighted.unsubscribe.create({ person_email: 'jony@appleseed.com' });
 ```
 
+Listing all people:
+
+```javascript
+// List all people, auto pagination
+// Note: this method automatically handles rate limits asynchronously
+delighted.people
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+  })
+  .then(() => {
+    console.log('Done iterating.');
+  }, (error) => {});
+
+// If you wish to stop the pagination at any point, just return false
+var count = 0;
+delighted.people
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+    count++;
+    if (count >= 2) {
+      // Autopagination will stop after 2 interations
+      return false;
+    }
+  })
+  .then(() => {
+    // After stopping, this will still get executed
+    console.log('Done iterating.');
+  }, (error) => {});
+
+// You can also handle rate limits and other errors yourself
+delighted.people
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+  })
+  .then(() => {
+    console.log('Done iterating.');
+  }, (error) => {
+    if (error.type == 'TooManyRequestsError') {
+      // Indicates how long to wait before making this request again
+      console.log(error.retryAfter);
+    }
+  });
+```
+
 Get a paginated list of people who have unsubscribed:
 
 ```javascript
