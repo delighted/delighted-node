@@ -38,26 +38,29 @@ describe('ListResource', function() {
         body: [{ id: '333', email: 'end@example.com', name: 'end' }],
         headers: {}
       },
-      'GET /v1/pagination_will_be_rate_limited': {
+      'GET /v1/pagination_will_be_rate_limited_once': {
         status: 200,
         body: [{ id: '112', email: 'fooz@example.com', name: 'fooz' }],
         headers: {
-          'Link': '<http://' + host + ':' + port + '/v1/pagination_is_rate_limited>; rel="next"'
+          'Link': '<http://' + host + ':' + port + '/v1/pagination_is_rate_limited_once>; rel="next"'
         }
       },
-      'GET /v1/pagination_is_rate_limited': [
+      'GET /v1/pagination_is_rate_limited_once': [
         {
           status: 429,
           body: [],
-          headers: {
-            'Retry-After': '3'
-          }
+          headers: { 'Retry-After': '3' }
         },
         {
           status: 200,
           body: [{ id: '223', email: 'boll@example.com', name: 'boll' }],
         }
-      ]
+      ],
+      'GET /v1/pagination_is_rate_limited_always': {
+        status: 429,
+        body: [],
+        headers: { 'Retry-After': '4' }
+      },
     };
 
     server = mockServer(port, mapping);
@@ -111,7 +114,7 @@ describe('ListResource', function() {
 
     it('calls our reject function on rate limit', function () {
       var list = [];
-      var listResource = new ListResource(new Resource(client), '/v1/pagination_will_be_rate_limited', null, client);
+      var listResource = new ListResource(new Resource(client), '/v1/pagination_will_be_rate_limited_once', null, client);
       return listResource
         .autoPagingEach(function(p) {
           list.push(p);
@@ -130,7 +133,7 @@ describe('ListResource', function() {
 
     it('automatically handles rate limit if requested', function () {
       var list = [];
-      var listResource = new ListResource(new Resource(client), '/v1/pagination_will_be_rate_limited', null, client);
+      var listResource = new ListResource(new Resource(client), '/v1/pagination_will_be_rate_limited_once', null, client);
       return listResource
         .autoPagingEach(function(p) {
           list.push(p);
@@ -154,6 +157,37 @@ describe('ListResource', function() {
         }, function(error) {
           // We should not have received any errors
           expect(true).to.be.false;
+        });
+    });
+
+    it('returns an exception if auto handles rate limit exceeds max retries', function () {
+      var list = [];
+      var retries = 0;
+      var listResource = new ListResource(new Resource(client), '/v1/pagination_is_rate_limited_always', null, client);
+      return listResource
+        .autoPagingEach(function(p) {
+          list.push(p);
+        }, {
+          auto_handle_rate_limits: true,
+          auto_handle_rate_limits_max_retries: 12,
+          auto_handle_rate_limits_callback: function(wait) {
+            expect(wait).to.eq(4);
+            retries++;
+            // Fast forward time for testing
+            clock.tick(4000);
+          }
+        })
+        .then(function() {
+          // This test always errors, so we never reach done status here
+          expect(true).to.be.false;
+        }, function(error) {
+          // We received no items, and an error
+          expect(list).to.have.length(0);
+          expect(error.name).to.eq('Error');
+          expect(error.type).to.eq('PaginationError');
+          expect(error.message).to.include('maximum retries exceeded');
+          // We retried as many times as requested
+          expect(retries).to.eq(12);
         });
     });
   });
