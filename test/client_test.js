@@ -56,7 +56,7 @@ describe('Client', function() {
       }, function(error) {
         console.log('error', error);
         expect(error.type).to.eq('ResourceValidationError');
-        expect(error.message).to.eql({ data: 'an error occurred' });
+        expect(error.message).to.eq('{"data":"an error occurred"}');
       });
     });
 
