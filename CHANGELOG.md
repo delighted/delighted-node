@@ -1,4 +1,4 @@
-## Unreleased
+## 2.0.0-rc1 (Unreleased)
 
 Features:
 
