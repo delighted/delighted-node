@@ -45,6 +45,69 @@ Previously subscribed people can be unsubscribed:
 delighted.unsubscribe.create({ person_email: 'jony@appleseed.com' });
 ```
 
+Listing all people:
+
+```javascript
+// List all people, auto pagination
+// Note: this method automatically handles rate limits asynchronously
+delighted.person
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+  })
+  .then(() => {
+    console.log('Done iterating.');
+  }, (error) => {});
+
+// If you wish to stop the pagination at any point, just return false
+var count = 0;
+delighted.person
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+    count++;
+    if (count >= 2) {
+      // Autopagination will stop after 2 interations
+      return false;
+    }
+  })
+  .then(() => {
+    // After stopping, this will still get executed
+    console.log('Done iterating.');
+  }, (error) => {});
+
+// You can limit the numbers of max successive retries during auto rate limits handling
+delighted.person
+  .list()
+  .autoPagingEach((person) => {
+      // Do something with `person`
+    },
+    { auto_handle_rate_limits_max_retries: 12 }
+  )
+  .then(() => {
+    console.log('Done iterating.');
+  }, (error) => {});
+
+
+// You can also handle rate limits and other errors yourself
+delighted.person
+  .list()
+  .autoPagingEach((person) => {
+    // Do something with `person`
+  }, { auto_handle_rate_limits: false })
+  .then(() => {
+    console.log('Done iterating.');
+  }, (error) => {
+    if (error.type == 'TooManyRequestsError') {
+      // Indicates how long to wait (in seconds) before making this request again
+      console.log(error.retryAfter);
+    } else if (error.type == 'PaginationError') {
+      // General pagination error
+      console.log(error.message);
+    }
+  });
+```
+
 Get a paginated list of people who have unsubscribed:
 
 ```javascript

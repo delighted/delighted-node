@@ -1,6 +1,9 @@
 var server = require('./support/server');
 var Client = require('../lib/Client');
 
+var host = 'localhost';
+var port = 7654;
+
 var requests = {
   'GET /fake': {
     status: 200,
@@ -48,6 +51,24 @@ var requests = {
   'GET /metrics?since=1424359740': {
     status: 200,
     body: { nps: 10 }
+  },
+
+  'GET /people': {
+    status: 200,
+    body: [
+        { id: '123', name: 'foos', email: 'foo@example.com' },
+        { id: '456', name: 'ball', email: 'ball@example.com' },
+      ],
+    headers: {
+      'Link': '<http://' + host + ':' + port + '/v1/people.json?page_info=123456789>; rel="next"'
+    }
+  },
+
+  'GET /v1/people.json?page_info=123456789': {
+    status: 200,
+    body: [
+        { id: '789', name: 'win', email: 'goal@example.com' }
+      ]
   },
 
   'POST /people': {
@@ -126,9 +147,6 @@ var requests = {
     body_raw: '{"invalid_json":123'
   }
 };
-
-var host = 'localhost';
-var port = 7654;
 
 module.exports = {
   port:     port,

@@ -64,6 +64,31 @@ describe('Person', function() {
     });
   });
 
+  describe('#list', function() {
+    describe('.autoPagingEach', function() {
+      it('calls our callback for each person', function () {
+        var people = [];
+        var person = new Person(helper.client);
+        return person.list()
+          .autoPagingEach(function(p) {
+            people.push(p);
+          })
+          .then(function() {
+            expect(people).to.have.length(3);
+            expect(people[0].id).to.eq('123');
+            expect(people[0].name).to.eq('foos');
+            expect(people[0].email).to.eq('foo@example.com');
+            expect(people[1].id).to.eq('456');
+            expect(people[1].name).to.eq('ball');
+            expect(people[1].email).to.eq('ball@example.com');
+            expect(people[2].id).to.eq('789');
+            expect(people[2].name).to.eq('win');
+            expect(people[2].email).to.eq('goal@example.com');
+          });
+      });
+    });
+  });
+
   describe('#materialize', function() {
     it('creates a new instance with defined attributes', function() {
       var person = new Person(helper.client);

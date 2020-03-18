@@ -1,3 +1,14 @@
+## 2.0.0-rc1 (Unreleased)
+
+Features:
+
+- Adds support for listing people
+
+Compatibility changes:
+
+- Add support for NodeJS 12, 13
+- Drop support for NodeJS 0.10, 0.11, 0.12
+
 ## 1.3.0 (2018-05-22)
 
 Features:

@@ -20,7 +20,7 @@ describe('Unsubscribe', function() {
 
       return unsubscribe.create(params).then(function(response) {
         expect(response.person_email).to.eq('foo@example.com');
-      });;
+      });
     });
   });
 
