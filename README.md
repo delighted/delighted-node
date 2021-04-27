@@ -161,6 +161,22 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
+### Autopilot
+
+Retrieve existing autopilot configuration for the `email` platform:
+
+```javascript
+delighted.autopilotConfiguration.retrieve('email');
+```
+
+To interact with the autopilot person api, configure the autopilotPerson instance with the platform. You can list all people imported to Autopilot, add a new person, or delete an existing person:
+
+```javascript
+delighted.autopilotPerson.forPlatform('email').all();
+delighted.autopilotPerson.forPlatform('email').create( { person_email: 'email@example.com' } );
+delighted.autopilotPerson.forPlatform('email').delete( { person_email: 'email@example.com' } );
+```
+
 ## Rate limits
 
 If a request is rate limited, a `DelightedError` error is raised with a type of `TooManyRequestsError`. You can handle that error to implement exponential backoff or retry strategies. The error object provides a `.retry_after` property to tell you how many seconds you should wait before retrying. For example:

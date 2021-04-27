@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "jshint lib",
-    "test": "mocha test/*_test.js test/**/*_test.js"
+    "test": "mocha 'test/*_test.js' 'test/**/*_test.js'"
   },
   "repository": {
     "type": "git",
