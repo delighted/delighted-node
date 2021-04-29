@@ -163,18 +163,27 @@ delighted.metrics.retrieve();
 
 ### Autopilot
 
-Retrieve existing autopilot configuration for the `email` platform:
+Retrieve existing autopilot configuration for a platform:
 
 ```javascript
 delighted.autopilotConfiguration.retrieve('email');
+delighted.autopilotConfiguration.retrieve('sms');
 ```
 
 To interact with the autopilot person api, configure the autopilotMembership instance with the platform. You can list all people imported to Autopilot, add a new person, or delete an existing person:
 
 ```javascript
-delighted.autopilotMembership.forPlatform('email').all();
-delighted.autopilotMembership.forPlatform('email').create( { person_email: 'email@example.com' } );
-delighted.autopilotMembership.forPlatform('email').delete( { person_email: 'email@example.com' } );
+// List all people in Autopilot
+delighted.autopilotMembership.forEmail().all();
+delighted.autopilotMembership.forSms().all();
+
+// Create a new person
+delighted.autopilotMembership.forEmail().create({ person_email: 'email@example.com' });
+delighted.autopilotMembership.forSms().create({ phone_number: '+15556667777' });
+
+// Remove a person
+delighted.autopilotMembership.forEmail().delete({ person_email: 'email@example.com' });
+delighted.autopilotMembership.forSms().delete( {phone_number: '+15556667777' });
 ```
 
 ## Rate limits
