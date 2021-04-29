@@ -56,6 +56,14 @@ var requests = {
     ]
   },
 
+  'GET /autopilot/sms/memberships': {
+    status: 200,
+    body:[
+      { created_at: 1619203221, updated_at: 1619203226, person: { id: 1, phone_number: "+15556667777" } },
+      { created_at: 1619203221, updated_at: 1619203226, person: { id: 2, phone_number: "+17776662222" } }
+    ]
+  },
+
   'POST /autopilot/email/memberships': {
     status: 201,
     body: { person: { id: 1, email: "person-1@example.com" }}
