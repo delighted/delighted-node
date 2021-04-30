@@ -13,22 +13,26 @@ describe('AutopilotMembership', function() {
     server.close();
   });
 
-  describe('#all', function() {
+  describe('#list', function() {
     it('retrieves a list of people for Email', function() {
       var autopilotMembership = new AutopilotMembership(helper.client).forEmail();
 
-      return autopilotMembership.all().then(function(response) {
-        expect(response).to.exist;
-        expect(response).to.have.length(2);
+      count = 0;
+      return autopilotMembership.list().autoPagingEach((_) => {
+        count = count + 1;
+      }).then(function() {
+        expect(count).to.equal(2);
       });
     });
 
     it('retrieves a list of people for Sms', function() {
       var autopilotMembership = new AutopilotMembership(helper.client).forSms();
 
-      return autopilotMembership.all().then(function(response) {
-        expect(response).to.exist;
-        expect(response).to.have.length(2);
+      count = 0;
+      return autopilotMembership.list().autoPagingEach((_) => {
+        count = count + 1;
+      }).then(() => {
+        expect(count).to.equal(2);
       });
     });
   });

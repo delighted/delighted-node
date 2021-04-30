@@ -174,8 +174,12 @@ To interact with the autopilot person api, configure the autopilotMembership ins
 
 ```javascript
 // List all people in Autopilot
-delighted.autopilotMembership.forEmail().all();
-delighted.autopilotMembership.forSms().all();
+delighted.autopilotMembership.forEmail().list().autoPagingEach((person) => {
+  console.log(person);
+}, { auto_handle_rate_limits: true });
+delighted.autopilotMembership.forSms().list().autoPagingEach((person) => {
+  console.log(person);
+}, { auto_handle_rate_limits: true });
 
 // Create a new person
 delighted.autopilotMembership.forEmail().create({ person_email: 'email@example.com' });
