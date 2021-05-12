@@ -1,3 +1,9 @@
+## 2.1.0 - Unreleased
+
+Features:
+
+- Adds support for Autopilot (retrieving configuration, listing people, adding people, and removing people)
+
 ## 2.0.0 (2020-03-18)
 
 Features:
