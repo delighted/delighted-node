@@ -161,6 +161,35 @@ Retrieve summary metrics of all responses:
 delighted.metrics.retrieve();
 ```
 
+### Autopilot
+
+Retrieve existing autopilot configuration for a platform:
+
+```javascript
+delighted.autopilotConfiguration.retrieve('email');
+delighted.autopilotConfiguration.retrieve('sms');
+```
+
+To interact with the autopilot person api, configure the autopilotMembership instance with the platform. You can list all people imported to Autopilot, add a new person, or delete an existing person:
+
+```javascript
+// List all people in Autopilot
+delighted.autopilotMembership.forEmail().list().autoPagingEach((person) => {
+  console.log(person);
+}, { auto_handle_rate_limits: true });
+delighted.autopilotMembership.forSms().list().autoPagingEach((person) => {
+  console.log(person);
+}, { auto_handle_rate_limits: true });
+
+// Create a new person
+delighted.autopilotMembership.forEmail().create({ person_email: 'email@example.com' });
+delighted.autopilotMembership.forSms().create({ phone_number: '+15556667777' });
+
+// Remove a person
+delighted.autopilotMembership.forEmail().delete({ person_email: 'email@example.com' });
+delighted.autopilotMembership.forSms().delete( {phone_number: '+15556667777' });
+```
+
 ## Rate limits
 
 If a request is rate limited, a `DelightedError` error is raised with a type of `TooManyRequestsError`. You can handle that error to implement exponential backoff or retry strategies. The error object provides a `.retry_after` property to tell you how many seconds you should wait before retrying. For example:
